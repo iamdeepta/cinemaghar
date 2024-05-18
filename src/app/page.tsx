@@ -15,8 +15,8 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
         <div className="py-14 px-10 flex justify-center items-center flex-wrap gap-2">
           {movies?.results?.map((movie: any) => {
             return (
-              <div key={movie?.id} className="mb-8">
-                <Link href={`/movies/${movie?.id}`} className="bg-[teal] p-4">
+              <div key={movie?.id} className="mb-2 bg-[teal] p-2">
+                <Link href={`/movies/${movie?.id}`} className="p-2">
                   {movie?.original_title}
                 </Link>
               </div>
