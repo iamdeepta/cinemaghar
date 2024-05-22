@@ -30,9 +30,9 @@ const Movies = ({ params }: any) => {
       <iframe
         src={`https://2embed.org/embed/movie/${id}`}
         scrolling="no"
-        sandbox={
-          "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-        }
+        // sandbox={
+        //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+        // }
         id="iframe"
         allow="encrypted-media"
         allowFullScreen
