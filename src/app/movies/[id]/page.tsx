@@ -40,6 +40,7 @@ const Movies = ({ params }: any) => {
         className="w-[100vw] h-[100vh]"
         style={{ overflowY: "hidden" }}
         onClick={() => appendSandbox()}
+        onLoad={() => appendSandbox()}
       ></iframe>
 
       {/* {!sandbox && (

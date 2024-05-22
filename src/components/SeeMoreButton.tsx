@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 
 const SeeMoreButton = ({ page }: any) => {
   const router = useRouter();
@@ -33,7 +32,7 @@ const SeeMoreButton = ({ page }: any) => {
         Next
       </button>
 
-      <Script type="module" async>
+      {/* <Script type="module" async>
         {`
         import WebTorrent from 'https://esm.sh/webtorrent';
         
@@ -52,7 +51,7 @@ const SeeMoreButton = ({ page }: any) => {
           }
         })
         `}
-      </Script>
+      </Script> */}
     </>
   );
 };
