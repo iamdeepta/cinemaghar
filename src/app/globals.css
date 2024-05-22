@@ -31,3 +31,29 @@ body {
     text-wrap: balance;
   }
 }
+
+.jw-icon .jw-icon-inline .jw-button-color .jw-reset {
+  display: none !important;
+}
+
+.jw-reset-text .jw-tooltip .jw-tooltip-vidsrc {
+  display: none !important;
+}
+
+div[button="vidsrc"] {
+  display: none !important;
+}
+
+iframe
+  #document
+  html
+  body
+  #player-wrapper
+  #player
+  .jw-wrapper
+  .jw-controls
+  .jw-controlbar
+  .jw-button-container
+  div[button="vidsrc"] {
+  display: none !important;
+}

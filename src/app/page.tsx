@@ -8,6 +8,7 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
   const movies = await getMovies(page ?? 1);
 
   // console.log(movies);
+
   return (
     <>
       <div className="py-14 px-10 text-center">
@@ -27,6 +28,8 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
           <SeeMoreButton page={page} />
         </div>
       </div>
+
+      {/* <video controls src="https://ap.lijit.com/readerinfo/v2"></video> */}
     </>
   );
 };
