@@ -1,15 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Movies = ({ params }: any) => {
   const { id } = params;
 
   const [sandbox, setSandbox] = useState(false);
+  const [fullScreen, setFullScreen] = useState(false);
 
   // useEffect(() => {
   //   document.getElementById("video_div")?.requestFullscreen();
   // }, []);
+
+  const toggleFullScreen = () => {
+    setFullScreen(!fullScreen);
+  };
+
+  useEffect(() => {
+    if (fullScreen) {
+      document.getElementById("video_div")?.requestFullscreen();
+    } else {
+      document?.exitFullscreen();
+    }
+  }, [fullScreen]);
 
   const appendSandbox = () => {
     setSandbox(true);
@@ -35,7 +48,7 @@ const Movies = ({ params }: any) => {
         // }
         id="iframe"
         allow="encrypted-media"
-        allowFullScreen
+        // allowFullScreen
         frameBorder="0"
         className="w-[100vw] h-[100vh]"
         style={{ overflowY: "hidden" }}
@@ -58,7 +71,7 @@ const Movies = ({ params }: any) => {
         ></div>
       )} */}
 
-      {/* <div
+      <div
         style={{
           position: "absolute",
           top: "90%",
@@ -70,8 +83,8 @@ const Movies = ({ params }: any) => {
           zIndex: 2147483647,
         }}
         id="siteLogo"
-        onClick={() => appendSandbox()}
-      ></div> */}
+        onClick={() => toggleFullScreen()}
+      ></div>
       {/* <video
         src="https://2embed.org/embed/movie/tt17048514"
         width="400"
