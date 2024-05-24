@@ -2,20 +2,20 @@
 
 import { useRouter } from "next/navigation";
 
-const SeeMoreButton = ({ page }: any) => {
+const SeeMoreButton = ({ page, title, movies }: any) => {
   const router = useRouter();
 
   const seeMore = () => {
     if (!page) {
-      router.push(`?page=2`);
+      router.push(`?page=2&title=${title}`);
     } else {
-      router.push(`?page=${Number(page) + 1}`);
+      router.push(`?page=${Number(page) + 1}&title=${title}`);
     }
   };
 
   const seePrev = () => {
     if (page > 1) {
-      router.push(`?page=${Number(page) - 1}`);
+      router.push(`?page=${Number(page) - 1}&title=${title}`);
     }
   };
 
@@ -28,9 +28,12 @@ const SeeMoreButton = ({ page }: any) => {
           Previous
         </button>
       )}
-      <button className="bg-[purple] p-2 rounded" onClick={() => seeMore()}>
-        Next
-      </button>
+
+      {movies?.length > 9 && (
+        <button className="bg-[purple] p-2 rounded" onClick={() => seeMore()}>
+          Next
+        </button>
+      )}
 
       {/* <Script type="module" async>
         {`

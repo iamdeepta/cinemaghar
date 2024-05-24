@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const Movies = ({ params }: any) => {
   const { id } = params;
 
   const [sandbox, setSandbox] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
+
+  const router = useRouter();
+
+  const iframeRef: any = useRef(null);
 
   // useEffect(() => {
   //   document.getElementById("video_div")?.requestFullscreen();
@@ -16,18 +21,41 @@ const Movies = ({ params }: any) => {
     setFullScreen(!fullScreen);
   };
 
-  useEffect(() => {
-    if (fullScreen) {
-      document.getElementById("video_div")?.requestFullscreen();
-    } else {
-      document?.exitFullscreen();
-    }
-  }, [fullScreen]);
+  // useEffect(() => {
+  //   if (fullScreen) {
+  //     document.getElementById("video_div")?.requestFullscreen();
+  //   } else {
+  //     document?.exitFullscreen();
+  //   }
+  // }, [fullScreen]);
 
-  const appendSandbox = () => {
-    setSandbox(true);
+  useEffect(() => {
+    // console.log(document.getElementById("#iframe")?.contentWindow.document);
+    console.log(iframeRef.current);
+    if (iframeRef.current && iframeRef.current.contentDocument) {
+      const styleEl = iframeRef.current.contentDocument.createElement("style");
+      styleEl.type = "text/css";
+      styleEl.innerHTML = `div[button="vidsrc"] {display: none !important;}`;
+
+      iframeRef.current.contentDocument.head.appendChild(styleEl);
+    }
     document
-      .querySelector("iframe")
+      .querySelector("#iframe")
+      ?.setAttribute(
+        "sandbox",
+        "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+      );
+  }, []);
+
+  const appendSandbox = (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
+    //close the window
+    window.close();
+    window.top?.close();
+    // setSandbox(true);
+    document
+      .querySelector("#iframe")
       ?.setAttribute(
         "sandbox",
         "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
@@ -42,18 +70,25 @@ const Movies = ({ params }: any) => {
     >
       <iframe
         src={`https://2embed.org/embed/movie/${id}`}
+        ref={iframeRef}
         scrolling="no"
-        // sandbox={
-        //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-        // }
+        // sandbox={"allow-scripts allow-same-origin"}
         id="iframe"
         allow="encrypted-media"
-        // allowFullScreen
+        allowFullScreen
         frameBorder="0"
+        autoFocus
+        // title="CinemaGhar"
+        // loading="eager"
+        // onKeyDown={() => appendSandbox()}
+        // onChange={() => appendSandbox()}
+        // onCanPlay={() => appendSandbox()}
+        // referrerPolicy="same-origin"
+        // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
         className="w-[100vw] h-[100vh]"
         style={{ overflowY: "hidden" }}
-        onClick={() => appendSandbox()}
-        onLoad={() => appendSandbox()}
+        onClick={(e) => appendSandbox(e)}
+        onLoad={(e) => appendSandbox(e)}
       ></iframe>
 
       {/* {!sandbox && (
@@ -71,7 +106,7 @@ const Movies = ({ params }: any) => {
         ></div>
       )} */}
 
-      <div
+      {/* <div
         style={{
           position: "absolute",
           top: "90%",
@@ -84,7 +119,7 @@ const Movies = ({ params }: any) => {
         }}
         id="siteLogo"
         onClick={() => toggleFullScreen()}
-      ></div>
+      ></div> */}
       {/* <video
         src="https://2embed.org/embed/movie/tt17048514"
         width="400"

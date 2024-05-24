@@ -7,9 +7,9 @@ const options = {
   },
 };
 
-export const getMovies = async (page: string) => {
+export const getMovies = async (page: string, title: string) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=true&language=en-US&page=${page}&sort_by=popularity.desc`,
+    `https://api.themoviedb.org/3/search/movie?api_key=""&query=${title}&page=${page}&sort_by=popularity.desc`,
     options
   );
 
