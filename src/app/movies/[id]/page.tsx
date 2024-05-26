@@ -69,15 +69,18 @@ const Movies = ({ params }: any) => {
       style={{ overflowY: "hidden" }}
     >
       <iframe
-        src={`https://2embed.org/embed/movie/${id}`}
+        src={`https://v2.vidsrc.me/embed/${id}`}
         ref={iframeRef}
         scrolling="no"
-        // sandbox={"allow-scripts allow-same-origin"}
+        // sandbox={
+        //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+        // }
         id="iframe"
         allow="encrypted-media"
         allowFullScreen
         frameBorder="0"
         autoFocus
+        referrerPolicy="origin"
         // title="CinemaGhar"
         // loading="eager"
         // onKeyDown={() => appendSandbox()}
