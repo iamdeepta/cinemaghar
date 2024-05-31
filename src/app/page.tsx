@@ -22,7 +22,10 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
           {movies?.results?.map((movie: any) => {
             return (
               <div key={movie?.id} className="">
-                <Link href={`/movies/${movie?.id}`} className="p-2">
+                <Link
+                  href={`/movies/${movie?.id}?title=${title}&page=${page}`}
+                  className="p-2"
+                >
                   {/* {movie?.original_title} */}
                   {movie?.poster_path && (
                     <div>

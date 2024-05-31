@@ -31,35 +31,34 @@ const Movies = ({ params }: any) => {
 
   useEffect(() => {
     // console.log(document.getElementById("#iframe")?.contentWindow.document);
-    console.log(iframeRef.current);
-    if (iframeRef.current && iframeRef.current.contentDocument) {
-      const styleEl = iframeRef.current.contentDocument.createElement("style");
-      styleEl.type = "text/css";
-      styleEl.innerHTML = `div[button="vidsrc"] {display: none !important;}`;
-
-      iframeRef.current.contentDocument.head.appendChild(styleEl);
-    }
-    document
-      .querySelector("#iframe")
-      ?.setAttribute(
-        "sandbox",
-        "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-      );
+    // console.log(iframeRef.current);
+    // if (iframeRef.current && iframeRef.current.contentDocument) {
+    //   const styleEl = iframeRef.current.contentDocument.createElement("style");
+    //   styleEl.type = "text/css";
+    //   styleEl.innerHTML = `div[button="vidsrc"] {display: none !important;}`;
+    //   iframeRef.current.contentDocument.head.appendChild(styleEl);
+    // }
+    // document
+    //   .querySelector("#iframe")
+    //   ?.setAttribute(
+    //     "sandbox",
+    //     "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+    //   );
   }, []);
 
   const appendSandbox = (event: any) => {
-    event.preventDefault();
-    event.stopPropagation();
-    //close the window
-    window.close();
-    window.top?.close();
-    // setSandbox(true);
-    document
-      .querySelector("#iframe")
-      ?.setAttribute(
-        "sandbox",
-        "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-      );
+    // event.preventDefault();
+    // event.stopPropagation();
+    // //close the window
+    // window.close();
+    // window.top?.close();
+    // // setSandbox(true);
+    // document
+    //   .querySelector("#iframe")
+    //   ?.setAttribute(
+    //     "sandbox",
+    //     "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+    //   );
   };
 
   return (
@@ -69,7 +68,10 @@ const Movies = ({ params }: any) => {
       style={{ overflowY: "hidden" }}
     >
       <iframe
-        src={`https://v2.vidsrc.me/embed/${id}`}
+        // src={`https://v2.vidsrc.me/embed/${id}`}
+        // src={`https://2embed.org/embed/movie/${id}`}
+        src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
+        // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
         ref={iframeRef}
         scrolling="no"
         // sandbox={
