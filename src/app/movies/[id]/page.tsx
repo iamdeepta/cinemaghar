@@ -79,7 +79,7 @@ const Movies = ({ params }: any) => {
   return (
     <div
       id="video_div"
-      className="flex justify-center items-center"
+      className="flex justify-center items-center w-[100vw] h-[100vh]"
       style={{ overflowY: "hidden" }}
       onContextMenu={(e) => e.preventDefault()}
     >
@@ -94,9 +94,49 @@ const Movies = ({ params }: any) => {
                 // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
                 ref={iframeRef}
                 scrolling="no"
-                // sandbox={
-                //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-                // }
+                sandbox={
+                  "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+                }
+                id="iframe"
+                allow="encrypted-media; autoplay"
+                allowFullScreen
+                frameBorder="0"
+                autoFocus
+                referrerPolicy="origin"
+                // title="CinemaGhar"
+                // loading="eager"
+                // onKeyDown={() => appendSandbox()}
+                // onChange={() => appendSandbox()}
+                // onCanPlay={() => appendSandbox()}
+                // referrerPolicy="same-origin"
+                // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
+                className="w-[100vw] h-[90vh]"
+                style={{ overflowY: "hidden" }}
+                onClick={(e) => appendSandbox(e)}
+                onLoad={(e) => appendSandbox(e)}
+                onContextMenu={(e) => e.preventDefault()}
+              ></iframe>
+            </>
+          ) : (
+            <>
+              Please use mozilla firefox browser for better streaming experience
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {!navigator.userAgent.toLowerCase().includes("chrome") ? (
+            <>
+              <iframe
+                // src={`https://v2.vidsrc.me/embed/${id}`}
+                // src={`https://2embed.org/embed/movie/${id}`}
+                src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
+                // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+                ref={iframeRef}
+                scrolling="no"
+                sandbox={
+                  "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+                }
                 id="iframe"
                 allow="encrypted-media; autoplay"
                 allowFullScreen
@@ -118,40 +158,10 @@ const Movies = ({ params }: any) => {
               ></iframe>
             </>
           ) : (
-            <>Browser needs to be mozilla firefox</>
+            <>
+              Please use mozilla firefox browser for better streaming experience
+            </>
           )}
-        </>
-      ) : (
-        <>
-          <iframe
-            // src={`https://v2.vidsrc.me/embed/${id}`}
-            // src={`https://2embed.org/embed/movie/${id}`}
-            src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
-            // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
-            ref={iframeRef}
-            scrolling="no"
-            // sandbox={
-            //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-            // }
-            id="iframe"
-            allow="encrypted-media; autoplay"
-            allowFullScreen
-            frameBorder="0"
-            autoFocus
-            referrerPolicy="origin"
-            // title="CinemaGhar"
-            // loading="eager"
-            // onKeyDown={() => appendSandbox()}
-            // onChange={() => appendSandbox()}
-            // onCanPlay={() => appendSandbox()}
-            // referrerPolicy="same-origin"
-            // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
-            className="w-[100vw] h-[100vh]"
-            style={{ overflowY: "hidden" }}
-            onClick={(e) => appendSandbox(e)}
-            onLoad={(e) => appendSandbox(e)}
-            onContextMenu={(e) => e.preventDefault()}
-          ></iframe>
         </>
       )}
 
