@@ -90,7 +90,7 @@ const Movies = ({ params }: any) => {
               <iframe
                 // src={`https://v2.vidsrc.me/embed/${id}`}
                 // src={`https://2embed.org/embed/movie/${id}`}
-                src={`https://2embed.org/embed/movie/${id}`}
+                src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
                 // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
                 ref={iframeRef}
                 scrolling="no"
