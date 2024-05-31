@@ -72,9 +72,11 @@ const Movies = ({ params }: any) => {
   //   };
   // }, [window.innerHeight, window.innerWidth]);
 
-  useEffect(() => {
-    console.log(navigator.userAgent.toLowerCase());
-  }, []);
+  // useEffect(() => {
+  //   console.log(navigator.userAgent.toLowerCase());
+  //   console.log(process.env.NEXT_PUBLIC_IFRAME_URL);
+  //   console.log(iframeRef.current.contentDocument);
+  // }, []);
 
   return (
     <div
@@ -85,12 +87,12 @@ const Movies = ({ params }: any) => {
     >
       {window.innerWidth < 769 ? (
         <>
-          {!navigator.userAgent.toLowerCase().includes("chrome") ? (
+          {navigator.userAgent.toLowerCase().includes("firefox") ? (
             <>
               <iframe
                 // src={`https://v2.vidsrc.me/embed/${id}`}
                 // src={`https://2embed.org/embed/movie/${id}`}
-                src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
+                src={`http://localhost:3000/api/movieLink/${id}`}
                 // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
                 ref={iframeRef}
                 scrolling="no"
@@ -109,7 +111,6 @@ const Movies = ({ params }: any) => {
                 // onChange={() => appendSandbox()}
                 // onCanPlay={() => appendSandbox()}
                 // referrerPolicy="same-origin"
-                // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
                 className="w-[100vw] h-[90vh]"
                 style={{ overflowY: "hidden" }}
                 onClick={(e) => appendSandbox(e)}
@@ -128,10 +129,7 @@ const Movies = ({ params }: any) => {
           {!navigator.userAgent.toLowerCase().includes("chrome") ? (
             <>
               <iframe
-                // src={`https://v2.vidsrc.me/embed/${id}`}
-                // src={`https://2embed.org/embed/movie/${id}`}
-                src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
-                // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+                src={`http://localhost:3000/api/movieLink/${id}`}
                 ref={iframeRef}
                 scrolling="no"
                 sandbox={
@@ -149,7 +147,6 @@ const Movies = ({ params }: any) => {
                 // onChange={() => appendSandbox()}
                 // onCanPlay={() => appendSandbox()}
                 // referrerPolicy="same-origin"
-                // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
                 className="w-[100vw] h-[100vh]"
                 style={{ overflowY: "hidden" }}
                 onClick={(e) => appendSandbox(e)}
@@ -164,46 +161,6 @@ const Movies = ({ params }: any) => {
           )}
         </>
       )}
-
-      {/* {!sandbox && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background: "red",
-            width: "100px",
-            height: "100px",
-          }}
-          onClick={() => appendSandbox()}
-        ></div>
-      )} */}
-
-      {/* <div
-        style={{
-          position: "absolute",
-          top: "90%",
-          left: "70%",
-          transform: "translate(-50%, -50%)",
-          background: "red",
-          width: "100px",
-          height: "100px",
-          zIndex: 2147483647,
-        }}
-        id="siteLogo"
-        onClick={() => toggleFullScreen()}
-      ></div> */}
-      {/* <video
-        src="https://2embed.org/embed/movie/tt17048514"
-        width="400"
-        controls
-      >
-        <source
-          src="https://2embed.org/embed/movie/tt17048514"
-          type="video/mp4"
-        />
-      </video> */}
     </div>
   );
 };
