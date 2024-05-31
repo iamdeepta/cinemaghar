@@ -92,7 +92,7 @@ const Movies = ({ params }: any) => {
               <iframe
                 // src={`https://v2.vidsrc.me/embed/${id}`}
                 // src={`https://2embed.org/embed/movie/${id}`}
-                src={`http://localhost:3000/api/movieLink/${id}`}
+                src={`https://cinemaghar-theta.vercel.app/api/movieLink/${id}`}
                 // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
                 ref={iframeRef}
                 scrolling="no"
@@ -129,7 +129,7 @@ const Movies = ({ params }: any) => {
           {!navigator.userAgent.toLowerCase().includes("chrome") ? (
             <>
               <iframe
-                src={`http://localhost:3000/api/movieLink/${id}`}
+                src={`https://cinemaghar-theta.vercel.app/api/movieLink/${id}`}
                 ref={iframeRef}
                 scrolling="no"
                 sandbox={
