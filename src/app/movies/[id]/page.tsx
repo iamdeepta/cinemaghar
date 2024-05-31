@@ -61,40 +61,99 @@ const Movies = ({ params }: any) => {
     //   );
   };
 
+  // useEffect(() => {
+  //   let h = window.innerHeight;
+  //   let w = window.innerWidth;
+  //   window.onresize = () => {
+  //     if (h !== window.innerHeight || w !== window.innerWidth) {
+  //       // If the user violates the rules, do anything u want :)
+  //       router.push("/");
+  //     }
+  //   };
+  // }, [window.innerHeight, window.innerWidth]);
+
+  useEffect(() => {
+    console.log(navigator.userAgent.toLowerCase());
+  }, []);
+
   return (
     <div
       id="video_div"
       className="flex justify-center items-center"
       style={{ overflowY: "hidden" }}
+      onContextMenu={(e) => e.preventDefault()}
     >
-      <iframe
-        // src={`https://v2.vidsrc.me/embed/${id}`}
-        // src={`https://2embed.org/embed/movie/${id}`}
-        src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
-        // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
-        ref={iframeRef}
-        scrolling="no"
-        // sandbox={
-        //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-        // }
-        id="iframe"
-        allow="encrypted-media"
-        allowFullScreen
-        frameBorder="0"
-        autoFocus
-        referrerPolicy="origin"
-        // title="CinemaGhar"
-        // loading="eager"
-        // onKeyDown={() => appendSandbox()}
-        // onChange={() => appendSandbox()}
-        // onCanPlay={() => appendSandbox()}
-        // referrerPolicy="same-origin"
-        // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
-        className="w-[100vw] h-[100vh]"
-        style={{ overflowY: "hidden" }}
-        onClick={(e) => appendSandbox(e)}
-        onLoad={(e) => appendSandbox(e)}
-      ></iframe>
+      {window.innerWidth < 769 ? (
+        <>
+          {!navigator.userAgent.toLowerCase().includes("chrome") ? (
+            <>
+              <iframe
+                // src={`https://v2.vidsrc.me/embed/${id}`}
+                // src={`https://2embed.org/embed/movie/${id}`}
+                src={`https://2embed.org/embed/movie/${id}`}
+                // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+                ref={iframeRef}
+                scrolling="no"
+                // sandbox={
+                //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+                // }
+                id="iframe"
+                allow="encrypted-media; autoplay"
+                allowFullScreen
+                frameBorder="0"
+                autoFocus
+                referrerPolicy="origin"
+                // title="CinemaGhar"
+                // loading="eager"
+                // onKeyDown={() => appendSandbox()}
+                // onChange={() => appendSandbox()}
+                // onCanPlay={() => appendSandbox()}
+                // referrerPolicy="same-origin"
+                // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
+                className="w-[100vw] h-[100vh]"
+                style={{ overflowY: "hidden" }}
+                onClick={(e) => appendSandbox(e)}
+                onLoad={(e) => appendSandbox(e)}
+                onContextMenu={(e) => e.preventDefault()}
+              ></iframe>
+            </>
+          ) : (
+            <>Browser needs to be mozilla firefox</>
+          )}
+        </>
+      ) : (
+        <>
+          <iframe
+            // src={`https://v2.vidsrc.me/embed/${id}`}
+            // src={`https://2embed.org/embed/movie/${id}`}
+            src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
+            // src={`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`}
+            ref={iframeRef}
+            scrolling="no"
+            // sandbox={
+            //   "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+            // }
+            id="iframe"
+            allow="encrypted-media; autoplay"
+            allowFullScreen
+            frameBorder="0"
+            autoFocus
+            referrerPolicy="origin"
+            // title="CinemaGhar"
+            // loading="eager"
+            // onKeyDown={() => appendSandbox()}
+            // onChange={() => appendSandbox()}
+            // onCanPlay={() => appendSandbox()}
+            // referrerPolicy="same-origin"
+            // srcDoc="<style>div[button='vidsrc'] {display: none !important;}</style>"
+            className="w-[100vw] h-[100vh]"
+            style={{ overflowY: "hidden" }}
+            onClick={(e) => appendSandbox(e)}
+            onLoad={(e) => appendSandbox(e)}
+            onContextMenu={(e) => e.preventDefault()}
+          ></iframe>
+        </>
+      )}
 
       {/* {!sandbox && (
         <div
