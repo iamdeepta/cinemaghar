@@ -2,58 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&family=Rubik&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+
+:root {
+  --main-color: #16467efa;
+  --red-color: #af00e4;
+  --icinema-bg: "http://localhost:3000/images/icinema_bg.jpg";
+  --nav-font: 18px;
+}
+
+html {
+  height: 100vh;
+  background-color: #141414;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.Toastify__toast-theme--light {
+  background-color: var(--toastify-color-dark) !important;
+  color: white !important;
 }
 
-.jw-icon .jw-icon-inline .jw-button-color .jw-reset {
-  display: none !important;
+.swal-overlay--show-modal .swal-modal {
+  border-radius: 15px;
 }
 
-.jw-reset-text .jw-tooltip .jw-tooltip-vidsrc {
-  display: none !important;
+.swal-button {
+  background-color: var(--main-color);
 }
 
-div[button="vidsrc"] {
-  display: none !important;
+.swal-button:hover {
+  background-color: var(--main-color) !important;
 }
 
-iframe
-  #document
-  html
-  body
-  #player-wrapper
-  #player
-  .jw-wrapper
-  .jw-controls
-  .jw-controlbar
-  .jw-button-container
-  div[button="vidsrc"] {
-  display: none !important;
-}
+/* html {
+  font-size: 62.5%;
+} */
+/*# sourceMappingURL=App.css.map */
